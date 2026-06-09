@@ -1,48 +1,37 @@
 # Stage 1
 
+## Objective
+The goal of this project is to display the most important notifications in a Priority Inbox.
+
 ## Approach
 
-Notifications are fetched from the provided API.
+1. Notifications are fetched from the provided Notification API.
+2. The API returns a list of notifications containing ID, Type, Message, and Timestamp.
+3. Each notification is assigned a priority based on its type.
+4. Notifications are then sorted according to their priority.
+5. The top notifications are displayed first in the Priority Inbox.
 
-Priority is calculated using:
+## Priority Order
 
-Placement > Result > Event
+1. Placement
+2. Result
+3. Admission
+4. Education
+5. Event
+Placement notifications are considered the most important and Event notifications are the least important.
 
-Recent notifications are ranked higher than older notifications.
+### Maintaining Top 10 Notifications
 
-Priority Score:
+When new notifications are received from the API:
 
-score = weight × 10000 + recency
+* Fetch the latest notifications.
+* Sort them again based on priority.
+* Keep only the first 10 notifications.
 
-Weights:
+## Output
 
-Placement = 3
-Result = 2
-Event = 1
+The Priority Inbox displays the top notifications fetched from the API, sorted according to their importance.
 
-## Finding Top 10
+## Conclusion
 
-1. Fetch notifications.
-2. Calculate score.
-3. Sort descending.
-4. Return first 10.
-
-## Efficient Maintenance
-
-For continuous incoming notifications:
-
-Use a Min Heap of size 10.
-
-Process:
-
-- Insert new notification.
-- If heap size > 10:
-  remove minimum priority item.
-
-Complexity:
-
-Insertion: O(log 10)
-Removal: O(log 10)
-Memory: O(10)
-
-This ensures only the Top 10 notifications are maintained at all times.
+The system uses API data and priority-based sorting to ensure that important notifications are shown before less important ones.
