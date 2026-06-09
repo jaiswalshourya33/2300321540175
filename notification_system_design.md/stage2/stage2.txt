@@ -1,0 +1,31 @@
+# Stage 2
+
+## Approach
+
+In this stage, I created a React application that fetches notifications from the provided API and displays them to the user.
+
+The application contains two pages:
+
+### 1. All Notifications Page
+This page displays all notifications received from the API. Users can:
+* View all notifications
+* Filter notifications by type (Placement, Result, Event)
+
+### 2. Priority Inbox Page
+This page displays only the most important notifications.
+The priority order used is:
+1. Placement
+2. Result
+3. Event
+Notifications are sorted according to this order and only the top notifications are displayed.
+
+## Handling New Notifications
+Whenever the page is refreshed or new data is fetched from the API:
+* Latest notifications are retrieved.
+* Priority is calculated based on notification type.
+* Notifications are sorted again.
+* Updated results are shown on the screen.
+
+## Conclusion
+
+The application provides a simple way to view all notifications and also helps users quickly find important notifications through the Priority Inbox feature.
