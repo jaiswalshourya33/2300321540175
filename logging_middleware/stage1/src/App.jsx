@@ -1,141 +1,82 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import "./App.css";
 
 function App() {
-  const [notifications] = useState([
-    {
-      id: 1,
-      title: "Mid-Sem",
-      type: "result",
-      timestamp: "2026-04-22 17:51:30",
-    },
-    {
-      id: 2,
-      title: "CSX Corporation Hiring",
-      type: "placement",
-      timestamp: "2026-04-22 17:51:18",
-    },
-    {
-      id: 3,
-      title: "farewell",
-      type: "event",
-      timestamp: "2026-04-22 17:51:06",
-    },
-    {
-      id: 4,
-      title: "mid-sem",
-      type: "result",
-      timestamp: "2026-04-22 17:50:54",
-    },
-     {
-      id: 5,
-      title: "project-overview",
-      type: "result",
-      timestamp: "2026-04-22 17:50:42",
-    },
-     {
-      id: 6,
-      title: "external",
-      type: "result",
-      timestamp: "2026-04-22 17:50:30",
-    },
+  const [notifications, setNotifications] = useState([]);
 
-     {
-      id: 7,
-      title: "project-overview",
-      type: "result",
-      timestamp: "2026-04-22 17:50:18",
-    },
+  useEffect(() => {
+    fetchNotifications();
+  }, []);
 
-     {
-      id: 8,
-      title: "tech-fest",
-      type: "event",
-      timestamp: "2026-04-22 17:50:06",
-    },
-     {
-      id: 9,
-      title: "project-overview",
-      type: "result",
-      timestamp: "2026-04-22 17:49:54",
-    },
-     {
-      id: 10,
-      title: "Advanced Micro Devices Inc.hiring",
-      type: "placement",
-      timestamp: "2026-04-22 17:49:42",
-    },
-  ]);
+  const fetchNotifications = async () => {
+    try {
+      const response = await axios.get(
+        "http://4.224.186.213/evaluation-service/notifications"
+      );
+
+      setNotifications(response.data.notifications);
+    } catch (error) {
+      console.log("Error fetching notifications:", error);
+    }
+  };
 
   const getPriority = (type) => {
     const priorities = {
-      placement: 3,
-      result: 2,
+      Placement: 3,
+      Result: 2,
     };
+
     return priorities[type] || 1;
   };
 
   const getPriorityColor = (type) => {
     const colors = {
-      placement: "#ea1111",
-      result: "#2cea5f",
-      event: "#3498db",
+      Placement: "#ea1111",
+      Result: "#2cea5f",
+      Event: "#3498db",
     };
+
     return colors[type] || "#95a5a6";
   };
 
-  const getPriorityLabel = (type) => {
-    const labels = {
-      placement: "Placement",
-      result: "Result",
-      admission: "Admission",
-      event: "Event",
-      education: "Education",
-    };
-    return labels[type] || "Other";
-  };
-
-  const topNotifications = [...notifications].sort(
-    (a, b) => getPriority(b.type) - getPriority(a.type)
-  );
+  const topNotifications = [...notifications]
+    .sort((a, b) => getPriority(b.Type) - getPriority(a.Type))
+    .slice(0, 10);
 
   return (
     <div className="app-container">
       <header className="app-header">
-        <h1> Priority Inbox</h1>
-        <p className="subtitle">
-          {notifications.length} notifications
-        </p>
+        <h1>Priority Inbox</h1>
+        <p>{topNotifications.length} Notifications</p>
       </header>
 
       <div className="notifications-grid">
         {topNotifications.map((item) => (
-          <div
-            key={item.id}
-            className={`notification-card notification-${item.type}`}
-          >
+          <div key={item.ID} className="notification-card">
             <div className="notification-header">
-              <span className="notification-icon">{item.icon}</span>
               <span
                 className="priority"
                 style={{
-                  backgroundColor: getPriorityColor(item.type),
+                  backgroundColor: getPriorityColor(item.Type),
                 }}
               >
-                {getPriorityLabel(item.type)}
+                {item.Type}
               </span>
             </div>
 
-            <h3 className="notification-title">{item.title}</h3>
+            <h3>{item.Message}</h3>
 
             <div className="notification-footer">
-              <span className="timestamp">{item.timestamp}</span>
-              <span className="priority-level">
-                Priority: {getPriority(item.type)}/3
+              <span>{item.Timestamp}</span>
+              <span>
+                Priority: {getPriority(item.Type)}/3
               </span>
             </div>
 
-            <button className="action-btn">View Details →</button>
+            <button className="action-btn">
+              View Details →
+            </button>
           </div>
         ))}
       </div>
