@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import "./AllNotification.css"; // Import styles
+import "./AllNotification.css";
 
 function AllNotification() {
   const [notifications, setNotifications] = useState([]);
@@ -70,7 +70,7 @@ function AllNotification() {
         </div>
       ) : notifications.length === 0 ? (
         <div className="empty-state">
-          <p>📭 No notifications yet</p>
+          <p>No notifications yet</p>
           <small>Check back later for updates</small>
         </div>
       ) : (

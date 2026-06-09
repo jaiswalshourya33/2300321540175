@@ -44,15 +44,6 @@ function PriorityInbox() {
     return date.toLocaleDateString() + " " + date.toLocaleTimeString();
   };
 
-  const getPriorityLabel = (type) => {
-    const labels = {
-      Placement: "HIGH",
-      Result: "MEDIUM",
-      Event: "LOW",
-    };
-    return labels[type] || "NORMAL";
-  };
-
   const getPriorityColor = (type) => {
     const colors = {
       Placement: "#e74c3c",
@@ -96,7 +87,6 @@ function PriorityInbox() {
                   className="priority-badge"
                   style={{ backgroundColor: getPriorityColor(item.Type) }}
                 >
-                  {getPriorityLabel(item.Type)}
                 </span>
                 <span className="priority-type">{item.Type}</span>
                 <span className="priority-time">
