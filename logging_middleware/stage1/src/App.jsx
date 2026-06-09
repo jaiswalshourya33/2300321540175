@@ -9,17 +9,29 @@ function App() {
     fetchNotifications();
   }, []);
 
-  const fetchNotifications = async () => {
-    try {
-      const response = await axios.get(
-        "http://4.224.186.213/evaluation-service/notifications"
-      );
+ const ACCESS_TOKEN = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJNYXBDbGFpbXMiOnsiYXVkIjoiaHR0cDovLzIwLjI0NC41Ni4xNDQvZXZhbHVhdGlvbi1zZXJ2aWNlIiwiZW1haWwiOiJqYWlzd2Fsc2hvdXJ5YTM2MEBnbWFpbC5jb20iLCJleHAiOjE3ODA5OTY2OTksImlhdCI6MTc4MDk5NTc5OSwiaXNzIjoiQWZmb3JkIE1lZGljYWwgVGVjaG5vbG9naWVzIFByaXZhdGUgTGltaXRlZCIsImp0aSI6ImQ1NjlhNTVlLWQxZmEtNGIxMC05NmRlLTE1YzhiZWMyZGY5NyIsImxvY2FsZSI6ImVuLUlOIiwibmFtZSI6InNob3VyeWEgamFpc3dhbCIsInN1YiI6IjE5Njc3MzBlLWU1MmYtNGEzYi1iZTUwLTI4MjgwMjM4ODcxYyJ9LCJlbWFpbCI6ImphaXN3YWxzaG91cnlhMzYwQGdtYWlsLmNvbSIsIm5hbWUiOiJzaG91cnlhIGphaXN3YWwiLCJyb2xsTm8iOiIyMzAwMzIxNTQwMTc1IiwiYWNjZXNzQ29kZSI6ImNYdXFodCIsImNsaWVudElEIjoiMTk2NzczMGUtZTUyZi00YTNiLWJlNTAtMjgyODAyMzg4NzFjIiwiY2xpZW50U2VjcmV0IjoicXlEd3hBRHl4Y1pUV2plRCJ9.r0CM50i-kvBEcZ8eNOyHQ-pd3_JLY_nHjQfz9rgstkg";
 
-      setNotifications(response.data.notifications);
-    } catch (error) {
-      console.log("Error fetching notifications:", error);
-    }
-  };
+const fetchNotifications = async () => {
+  try {
+    const response = await axios.get(
+      "http://4.224.186.213/evaluation-service/notifications",
+      {
+        headers: {
+          Authorization: `Bearer ${ACCESS_TOKEN}`,
+        },
+      }
+    );
+
+    console.log(response.data);
+
+    setNotifications(response.data.notifications || []);
+  } catch (error) {
+    console.log(
+      "Error:",
+      error.response?.data || error.message
+    );
+  }
+};
 
   const getPriority = (type) => {
     const priorities = {
