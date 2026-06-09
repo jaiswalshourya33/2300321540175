@@ -1,0 +1,136 @@
+.priority-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.priority-header {
+  border-bottom: 2px solid #ddd;
+  padding-bottom: 15px;
+  margin-bottom: 30px;
+}
+
+.priority-header h1 {
+  margin: 0;
+  color: #333;
+  font-size: 28px;
+}
+
+.back-btn {
+  background-color: #3498db;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+  margin-top: 10px;
+  display: block;
+}
+
+.back-btn:hover {
+  background-color: #2980b9;
+}
+
+.error-message {
+  background-color: #f8d7da;
+  color: #721c24;
+  padding: 15px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+  border-left: 4px solid #f5c6cb;
+}
+
+.loading-state {
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.spinner {
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #3498db;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 15px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.loading-state p {
+  color: #666;
+  font-size: 16px;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 60px 20px;
+  color: #999;
+}
+
+.empty-state p {
+  font-size: 18px;
+  margin: 0 0 10px 0;
+}
+
+.empty-state small {
+  font-size: 14px;
+}
+
+.priority-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.priority-card {
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-left: 4px solid;
+  padding: 15px;
+  margin-bottom: 12px;
+  border-radius: 4px;
+}
+
+.priority-header-content {
+  margin-bottom: 10px;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.priority-badge {
+  display: inline-block;
+  color: white;
+  padding: 4px 10px;
+  border-radius: 3px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.priority-type {
+  background-color: #ecf0f1;
+  color: #333;
+  padding: 4px 10px;
+  border-radius: 3px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.priority-time {
+  font-size: 12px;
+  color: #999;
+  margin-left: auto;
+}
+
+.priority-message {
+  color: #333;
+  font-size: 14px;
+  line-height: 1.5;
+  margin: 8px 0 0 0;
+}
