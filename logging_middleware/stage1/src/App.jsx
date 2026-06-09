@@ -5,75 +5,72 @@ function App() {
   const [notifications] = useState([
     {
       id: 1,
-      title: "AffordMed Drive",
-      type: "placement",
-      timestamp: "1 hours ago",
+      title: "Mid-Sem",
+      type: "result",
+      timestamp: "2026-04-22 17:51:30",
     },
     {
       id: 2,
-      title: "Semester Result Published",
-      type: "result",
-      timestamp: "5 hours ago",
+      title: "CSX Corporation Hiring",
+      type: "placement",
+      timestamp: "2026-04-22 17:51:18",
     },
     {
       id: 3,
-      title: "Veersa Hiring Challenge",
-      type: "placement",
-      timestamp: "1 day ago",
+      title: "farewell",
+      type: "event",
+      timestamp: "2026-04-22 17:51:06",
     },
     {
       id: 4,
-      title: "ST Results Released",
+      title: "mid-sem",
       type: "result",
-      timestamp: "2 days ago",
+      timestamp: "2026-04-22 17:50:54",
     },
      {
       id: 5,
-      title: "Admission Open",
-      type: "admission",
-      timestamp: "2 days ago",
+      title: "project-overview",
+      type: "result",
+      timestamp: "2026-04-22 17:50:42",
     },
      {
       id: 6,
-      title: "Admission closed",
-      type: "admission",
-      timestamp: "5 days ago",
+      title: "external",
+      type: "result",
+      timestamp: "2026-04-22 17:50:30",
     },
 
      {
       id: 7,
-      title: "Genero Event ",
-      type: "event",
-      timestamp: "2 days ago",
+      title: "project-overview",
+      type: "result",
+      timestamp: "2026-04-22 17:50:18",
     },
 
      {
       id: 8,
-      title: "TED Talks",
+      title: "tech-fest",
       type: "event",
-      timestamp: "5 days ago",
+      timestamp: "2026-04-22 17:50:06",
     },
      {
       id: 9,
-      title: "DSA Training",
-      type: "education",
-      timestamp: "5 days ago",
+      title: "project-overview",
+      type: "result",
+      timestamp: "2026-04-22 17:49:54",
     },
      {
       id: 10,
-      title: "AWS Training",
-      type: "education",
-      timestamp: "5 days ago",
+      title: "Advanced Micro Devices Inc.hiring",
+      type: "placement",
+      timestamp: "2026-04-22 17:49:42",
     },
   ]);
 
   const getPriority = (type) => {
     const priorities = {
-      placement: 5,
-      result: 4,
-      admission: 3,
-      event: 1,
-      education: 2,
+      placement: 3,
+      result: 2,
     };
     return priorities[type] || 1;
   };
@@ -82,9 +79,7 @@ function App() {
     const colors = {
       placement: "#ea1111",
       result: "#2cea5f",
-      admission: "#f39c12",
       event: "#3498db",
-      education: "#9b59b6",
     };
     return colors[type] || "#95a5a6";
   };
@@ -136,7 +131,7 @@ function App() {
             <div className="notification-footer">
               <span className="timestamp">{item.timestamp}</span>
               <span className="priority-level">
-                Priority: {getPriority(item.type)}/5
+                Priority: {getPriority(item.type)}/3
               </span>
             </div>
 
